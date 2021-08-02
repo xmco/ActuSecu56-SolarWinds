@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  idp:
+    build:
+      context: .
+      args:
+        SIMPLESAMLPHP_VERSION: "1.19.1"
+    environment:
+      SIMPLESAMLPHP_SP_ENTITY_ID: ${SIMPLESAMLPHP_SP_ENTITY_ID}
+      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: ${SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE}
+      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp
+      SIMPLESAMLPHP_IDP_ADMIN_PASSWORD: ${SIMPLESAMLPHP_IDP_ADMIN_PASSWORD}
+      SIMPLESAMLPHP_IDP_SECRET_SALT: ${SIMPLESAMLPHP_IDP_SECRET_SALT}
+    ports:
+      - "127.0.0.1:80:80"
